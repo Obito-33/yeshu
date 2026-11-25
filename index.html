@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Daily Verse</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500&family=Nunito:wght@400;600&family=Noto+Serif+Tamil:wght@400;600&family=Noto+Sans+Tamil:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="sky" aria-hidden="true">
+  <div class="sun"></div>
+  <div class="cloud c1"></div><div class="cloud c2"></div><div class="cloud c3"></div>
+</div>
+
+<main>
+  <header>
+    <h1>Daily Verse</h1>
+    <p class="sub">அமைதியான ஒரு வசனம், உங்கள் இன்றைய நாளுக்காக</p>
+  </header>
+
+  <section class="card" id="pick">
+    <label>Name<input id="name" placeholder="Your name" autocomplete="given-name"></label>
+    <label>Date<input id="date" type="date"></label>
+    <label>Language<select id="tr"><option>Loading languages…</option></select></label>
+    <button id="go" class="btn main">Show my verse</button>
+  </section>
+
+  <section class="card verse" id="result" hidden>
+    <p id="greet"></p>
+    <blockquote id="vtext"></blockquote>
+    <p id="vref"></p>
+    <div class="row">
+      <button id="vlisten" class="btn">Listen</button>
+      <button id="vexp" class="btn">Explain in Tamil</button>
+      <button class="btn ghost stop">Stop</button>
+    </div>
+    <div id="exp1" class="exp" hidden></div>
+  </section>
+
+  <section class="card" id="read">
+    <h2>Read the Bible</h2>
+    <div class="row pick">
+      <select id="book" aria-label="Book"></select>
+      <input id="chap" type="number" min="1" value="1" aria-label="Chapter">
+      <button id="prev" class="btn ghost" aria-label="Previous chapter">&larr;</button>
+      <button id="next" class="btn ghost" aria-label="Next chapter">&rarr;</button>
+      <button id="open" class="btn">Open</button>
+    </div>
+    <div id="text" class="text"><p class="hint">Choose a book and chapter, then press Open.</p></div>
+    <div class="row">
+      <button id="rlisten" class="btn">Read chapter aloud</button>
+      <button id="rexp" class="btn">Explain selected verse</button>
+      <button class="btn ghost stop">Stop</button>
+    </div>
+    <div id="exp2" class="exp" hidden></div>
+  </section>
+
+  <details class="card">
+    <summary>Settings (optional)</summary>
+    <p class="hint">Explain button for any verse in the Bible needs an Anthropic API key. It stays only in this browser.</p>
+    <input id="key" type="password" placeholder="sk-ant-..." autocomplete="off">
+    <button id="savekey" class="btn">Save key</button>
+  </details>
+</main>
+
+<div id="toast" role="status"></div>
+<script src="script.js"></script>
+</body>
+</html>
