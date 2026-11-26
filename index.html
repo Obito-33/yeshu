@@ -1,72 +1,33 @@
 <!DOCTYPE html>
 <html lang="ta">
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Daily Verse</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500&family=Nunito:wght@400;600&family=Noto+Serif+Tamil:wght@400;600&family=Noto+Sans+Tamil:wght@400;600&display=swap" rel="stylesheet">
+<title>தமிழ் பசங்க VTC</title>
+<link href="https://fonts.googleapis.com/css2?family=Anek+Tamil:wght@400;600;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div class="sky" aria-hidden="true">
-  <div class="sun"></div>
-  <div class="cloud c1"></div><div class="cloud c2"></div><div class="cloud c3"></div>
-</div>
-
+<header><span class="logo">VTC</span></header>
 <main>
-  <header>
-    <h1>Daily Verse</h1>
-    <p class="sub">அமைதியான ஒரு வசனம், உங்கள் இன்றைய நாளுக்காக</p>
-  </header>
+  <h1>தமிழ் பசங்க <mark>VTC</mark></h1>
+  <p>நம்ம பசங்க செய்த AI வீடியோக்கள் ஒரே இடத்தில்.</p>
 
-  <section class="card" id="pick">
-    <label>Name<input id="name" placeholder="Your name" autocomplete="given-name"></label>
-    <label>Date<input id="date" type="date"></label>
-    <label>Language<select id="tr"><option>Loading languages…</option></select></label>
-    <button id="go" class="btn main">Show my verse</button>
-  </section>
+  <form id="form">
+    <input type="file" id="file" accept="video/*" required>
+    <input type="text" id="title" placeholder="தலைப்பு" required maxlength="80">
+    <input type="text" id="creator" placeholder="உன் பெயர்" maxlength="40">
+    <select id="tool">
+      <option>Sora</option><option>Veo</option><option>Runway</option>
+      <option>Kling</option><option>Pika</option><option>Midjourney</option><option>Other</option>
+    </select>
+    <button class="btn" id="btn" type="submit">பதிவேற்று</button>
+  </form>
 
-  <section class="card verse" id="result" hidden>
-    <p id="greet"></p>
-    <blockquote id="vtext"></blockquote>
-    <p id="vref"></p>
-    <div class="row">
-      <button id="vlisten" class="btn">Listen</button>
-      <button id="vexp" class="btn">Explain in Tamil</button>
-      <button class="btn ghost stop">Stop</button>
-    </div>
-    <div id="exp1" class="exp" hidden></div>
-  </section>
-
-  <section class="card" id="read">
-    <h2>Read the Bible</h2>
-    <div class="row pick">
-      <select id="book" aria-label="Book"></select>
-      <input id="chap" type="number" min="1" value="1" aria-label="Chapter">
-      <button id="prev" class="btn ghost" aria-label="Previous chapter">&larr;</button>
-      <button id="next" class="btn ghost" aria-label="Next chapter">&rarr;</button>
-      <button id="open" class="btn">Open</button>
-    </div>
-    <div id="text" class="text"><p class="hint">Choose a book and chapter, then press Open.</p></div>
-    <div class="row">
-      <button id="rlisten" class="btn">Read chapter aloud</button>
-      <button id="rexp" class="btn">Explain selected verse</button>
-      <button class="btn ghost stop">Stop</button>
-    </div>
-    <div id="exp2" class="exp" hidden></div>
-  </section>
-
-  <details class="card">
-    <summary>Settings (optional)</summary>
-    <p class="hint">Explain button for any verse in the Bible needs an Anthropic API key. It stays only in this browser.</p>
-    <input id="key" type="password" placeholder="sk-ant-..." autocomplete="off">
-    <button id="savekey" class="btn">Save key</button>
-  </details>
+  <h2>AI வீடியோக்கள்</h2>
+  <div id="grid" class="grid"></div>
 </main>
-
-<div id="toast" role="status"></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4"></script>
 <script src="script.js"></script>
 </body>
 </html>
